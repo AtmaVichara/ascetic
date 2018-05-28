@@ -4,6 +4,7 @@ exports.up = function(knex, Promise) {
     table.increments('id').primary()
     table.bigInteger('user_id')
     table.bigInteger('workout_id')
+    table.timestamps(true, true)
   })
 };
 

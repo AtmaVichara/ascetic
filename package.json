@@ -7,19 +7,24 @@
   },
   "dependencies": {
     "bcrypt": "^2.0.1",
-    "chai": "^4.1.2",
     "chai-http": "^4.0.0",
     "cookie-parser": "^1.4.3",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
     "express": "^4.16.3",
+    "express-session": "^1.15.6",
     "http-errors": "^1.6.3",
     "knex": "^0.14.6",
     "materialize-css": "^0.100.2",
-    "mocha": "^5.2.0",
     "morgan": "^1.9.0",
     "node-sass-middleware": "0.11.0",
     "nodemon": "^1.17.5",
     "pg": "^7.4.3"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "superagent": "^3.8.3",
+    "supertest": "^3.1.0"
   }
 }
