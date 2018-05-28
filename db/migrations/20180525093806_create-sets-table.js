@@ -4,6 +4,7 @@ exports.up = function(knex, Promise) {
     table.increments('id').primary()
     table.bigInteger('exercise_id').unsigned().index().references('id').inTable('exercises')
     table.integer('quantity')
+    table.timestamps(true, true)
   })
 };
 
