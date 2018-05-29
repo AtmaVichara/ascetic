@@ -9,6 +9,10 @@ class Exercise {
     this.name = name
   }
 
+  static all() {
+    return database('exercises').select('*')
+  }
+
 }
 
 module.exports = Exercise
