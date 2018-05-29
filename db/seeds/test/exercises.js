@@ -1,5 +1,5 @@
 const Baby = require('babyparse')
-const myFile = process.env.PWD + "/db/data/dev/exercises.csv"
+const myFile = process.env.PWD + "/db/data/test/exercises.csv"
 const Exercise = require('../../../models/exercise')
 
 var exercises = new Array()
