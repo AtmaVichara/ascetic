@@ -4,6 +4,9 @@ exports.up = function(knex, Promise) {
     table.increments('id').primary()
     table.bigInteger('workout_id')
     table.bigInteger('exercise_id')
+    table.integer('sets')
+    table.integer('reps')
+    table.integer('weight')
     table.timestamps(true, true)
   })
 };
