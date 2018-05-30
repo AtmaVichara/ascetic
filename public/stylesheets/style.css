@@ -14,4 +14,11 @@ a {
 #logInForm {
   display: none; }
 
+#userWorkouts {
+  position: relative; }
+
+#workoutCreation {
+  position: relative;
+  bottom: 0px; }
+
 /*# sourceMappingURL=style.css.map */
