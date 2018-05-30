@@ -2,14 +2,12 @@ const Baby = require('babyparse')
 const myFile = process.env.PWD + "/db/data/dev/exercises.csv"
 const Exercise = require('../../../models/exercise')
 
-var exercises = new Array()
-
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
   var exercises = new Array()
 
-  parsed = Baby.parseFiles(myFile)
-  console.log(parsed)
+  let parsed = Baby.parseFiles(myFile)
+
   parsed.data.forEach((row) => {
     exercises.push(new Exercise(row[0]))
   })
