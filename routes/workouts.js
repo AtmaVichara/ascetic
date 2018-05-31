@@ -18,4 +18,8 @@ router.post("/workouts", (req, res, next) => {
   return WorkoutsController.create(req, res, next)
 })
 
+router.get("/workouts", sessionChecker, (req, res, next) => {
+  return WorkoutsController.index(req, res, next)
+})
+
 module.exports = router
