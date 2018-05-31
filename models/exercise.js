@@ -13,6 +13,17 @@ class Exercise {
     return database('exercises').select('*')
   }
 
+  static findAllByName(exerciseName) {
+    return database('exercises')
+      .select('*')
+      .where("name", exerciseName)
+      .returning("*")
+      .then((exercise) => {
+        return exercise[0]
+      })
+      .catch((error) => console.error({error}))
+  }
+
 }
 
 module.exports = Exercise
