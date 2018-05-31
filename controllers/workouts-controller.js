@@ -17,8 +17,6 @@ class WorkoutsController {
     let workoutName = req.body.workout_name
     let userId = req.session.user.id
     let exerciseNames = req.body.exercise_names
-    console.log(req.body.sets)
-    console.log(req.body.reps)
 
     Workout.create(workoutName, userId)
       .then((newWorkout) => {
