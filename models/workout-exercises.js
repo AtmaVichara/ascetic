@@ -10,6 +10,14 @@ class WorkoutExercise {
       .returning("*")
   }
 
+  static async createAll(exercises, workout) {
+    let workoutExercises = exercises.map(async (exercise) => {
+      let attributes = {workout_id: workout.id, exercise_id: exercise.id}
+      return await this.create(attributes)
+    })
+    return await Promise.all(workoutExercises)
+  }
+
 }
 
 module.exports = WorkoutExercise

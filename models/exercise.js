@@ -24,6 +24,13 @@ class Exercise {
       .catch((error) => console.error({error}))
   }
 
+  static async mapExercises(exerciseNames) {
+    let exercises = exerciseNames.map(async (name) => {
+      return await this.findAllByName(name)
+    })
+    return await Promise.all(exercises)
+  }
+
 }
 
 module.exports = Exercise
