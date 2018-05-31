@@ -5,7 +5,7 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link type="text/css" rel="stylesheet" href="stylesheets/materialize.min.css"  media="screen,projection"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="javascripts/main.js"></script>
+    <script src="javascripts/workouts.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title></title>
   </head>
@@ -28,7 +28,7 @@
         <% workouts.forEach((workout) => { %>
           <li class="collection-header" id="workoutHeader"><h6><%= workout.name %></h6></li>
           <% workout.exercises.forEach((exercise) => { %>
-            <li class="collection-item">
+            <li class="collection-item exerciseShow">
               <strong><%= exercise.name %></strong>
             </li>
           <% }) %>
