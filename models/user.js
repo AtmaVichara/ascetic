@@ -32,7 +32,6 @@ class User {
 
     return this.findByUsername(userReq)
       .then((foundUser) => {
-        console.log(foundUser)
         user = foundUser
         return this.checkPassword(userReq.password, foundUser)
       })

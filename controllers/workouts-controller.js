@@ -13,37 +13,26 @@ class WorkoutsController {
       })
   }
 
-  static create(req, res, next) {
+  static async create(req, res, next) {
     let workoutName = req.body.workout_name
     let userId = req.session.user.id
     let exerciseNames = req.body.exercise_names
 
-    Workout.create(workoutName, userId)
-      .then((newWorkout) => {
-        return newWorkout
-      })
-      .then((workout) => {
-        exerciseNames.forEach((name) => {
-           Exercise.findAllByName(name)
-            .then((exercise) => {
-              let exercises = new Array()
-
-              exercises.push(exercise)
-              return exercises
-            })
-            .then((allExercises) => {
-              allExercises.forEach((exercise) => {
-                let attributes = {workout_id: workout.id, exercise_id: exercise.id}
-
-                WorkoutExercise.create(attributes)
-                  .then((workoutExercise) => {
-                    return workoutExercise
-                    res.redirect("/workouts")
-                  })
-              })
-            })
-        })
-      })
+    let workout = await Workout.create(workoutName, userId)
+    let exercises = exerciseNames.map(async (name) => {
+      return await Exercise.findAllByName(name)
+    })
+    let allExercises = await Promise.all(exercises)
+    let workoutExercises = allExercises.map(async (exercise) => {
+      let attributes = {workout_id: workout.id, exercise_id: exercise.id}
+      return await WorkoutExercise.create(attributes)
+    })
+    let allWorkoutExercises = await Promise.all(workoutExercises)
+    if (allWorkoutExercises.includes(undefined)) {
+      res.redirect("/new_workouts")
+    } else {
+      res.redirect("/workouts")
+    }
   }
 
 }
