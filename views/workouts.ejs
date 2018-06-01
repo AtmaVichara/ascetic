@@ -5,9 +5,9 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link type="text/css" rel="stylesheet" href="stylesheets/materialize.min.css"  media="screen,projection"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="javascripts/main.js"></script>
+    <script src="javascripts/workouts.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>Dashboard</title>
+    <title></title>
   </head>
   <body>
     <nav class="grey lighten-1">
@@ -20,14 +20,20 @@
       </div>
     </nav>
 
-    <div class="container grid-system" id="userWorkouts">
-
-
-      <div class="right-align col l12" id="workoutCreation">
-        <a class="btn-floating btn-large waves-effect waves-light grey lighten-1" href="/new_workouts">
-          <i class="material-icons">add</i>
-        </a>
+    <div class="container">
+      <div class="col s12 m12 center-align">
+        <h1>Workouts</h1>
       </div>
+      <ul class="collection with-header">
+        <% workouts.forEach((workout) => { %>
+          <li class="collection-header" id="workoutHeader"><h6><%= workout.name %></h6></li>
+          <% workout.exercises.forEach((exercise) => { %>
+            <li class="collection-item exerciseShow">
+              <strong><%= exercise.name %></strong>
+            </li>
+          <% }) %>
+        <% }) %>
+      </ul>
     </div>
 
     <script type="text/javascript" src="javascripts/materialize.min.js"></script>

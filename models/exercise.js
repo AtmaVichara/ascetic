@@ -13,6 +13,24 @@ class Exercise {
     return database('exercises').select('*')
   }
 
+  static findAllByName(exerciseName) {
+    return database('exercises')
+      .select('*')
+      .where("name", exerciseName)
+      .returning("*")
+      .then((exercise) => {
+        return exercise[0]
+      })
+      .catch((error) => console.error({error}))
+  }
+
+  static async mapExercises(exerciseNames) {
+    let exercises = exerciseNames.map(async (name) => {
+      return await this.findAllByName(name)
+    })
+    return await Promise.all(exercises)
+  }
+
 }
 
 module.exports = Exercise

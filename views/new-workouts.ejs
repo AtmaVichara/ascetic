@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link type="text/css" rel="stylesheet" href="stylesheets/materialize.min.css"  media="screen,projection"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>New Workout</title>
+  </head>
+  <body>
+
+    <nav class="grey lighten-1">
+      <div>
+        <a href="/dashboard" class="brand-logo center">Ascetic</a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li><a href="/exercises">Exercises</a></li>
+          <li><a href="/workouts">Workouts</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+          <form class="col s12" action="/workouts" method="POST">
+            <div class="row valign-wrapper">
+              <div class="input-field col s6">
+                <input name="name" id="workout_name" type="text" class="validate">
+                <label for="name">Workout Name</label>
+              </div>
+              <div class="col s6">
+                <button class="btn waves-effect waves-light col s12" type="submit" name="action">Submit
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>
+            </div>
+              <ul class="collection">
+                <% exercises.forEach((exercise) => { %>
+                  <li class="collection-item">
+                    <div>
+                      <label>
+                        <input type="checkbox" class="filled-in" name='exercise_names' id="myCheckbox" value="<%= exercise.name %>"/>
+                        <span>Add <%= exercise.name %></span>
+                      </label>
+                    </div>
+                  </li>
+                <% }) %>
+            </div>
+          </form>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="javascripts/materialize.min.js"></script>
+  </body>
+</html>
