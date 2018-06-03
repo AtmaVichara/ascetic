@@ -30,17 +30,6 @@ class Workout {
     .catch((error) => console.error({error}))
   }
 
-  static findLastByUserId(userId) {
-    return database("workouts")
-      .select("*")
-      .where("user_id", userId)
-      .orderBy("id", "asc")
-      .then((workout) => {
-        return workout[0]
-      })
-      .catch((error) => console.error({error}))
-  }
-
   static create(workoutName, userId) {
     return database("workouts")
       .insert({
