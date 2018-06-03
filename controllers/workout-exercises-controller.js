@@ -7,9 +7,9 @@ class WorkoutExercisesController {
   static async update(req, res, next) {
     let workoutId = req.params.workout_id
     let exerciseId = req.params.exercise_id
-    let setsReps = req.body
+    let attributes = req.body
     let workoutExercise = await WorkoutExercise.findByWorkoutAndExerciseId(workoutId, exerciseId)
-    let updatedWorkEx   = await WorkoutExercise.update(setsReps, workoutExercise.id)
+    let updatedWorkEx   = await WorkoutExercise.update(attributes, workoutExercise.id)
     if (updatedWorkEx === undefined) {
       res.json({error: "Did Not Save Sets and Reps"})
     } else {
