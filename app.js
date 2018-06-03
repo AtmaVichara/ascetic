@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var pgSession = require('connect-pg-simple')(session)
 var cors = require('cors')
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -22,6 +23,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(session({
+    store: new pgSession({
+      conString: process.env.DATABASE_URL
+    }),
     key: 'user_sid',
     secret: 'somerandonstuffs',
     resave: false,
