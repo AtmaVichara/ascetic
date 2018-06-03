@@ -14,7 +14,7 @@ exports.seed = function(knex, Promise) {
 
 
 
-  return knex.raw('TRUNCATE exercises RESTART IDENTITY')
+  return knex.raw('TRUNCATE exercises RESTART IDENTITY CASCADE')
     .then(function () {
       // Inserts seed entries
       return knex('exercises').insert(exercises);
