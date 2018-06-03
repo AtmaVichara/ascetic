@@ -3,7 +3,6 @@ var router = express.Router();
 const Workout = require('../models/workout')
 const Exercise = require('../models/exercise')
 const WorkoutExercise = require("../models/workout-exercises")
-pry = require('pryjs')
 
 
 class WorkoutsController {
@@ -12,7 +11,7 @@ class WorkoutsController {
     try {
       let userId = req.session.user.id
       let userWorkouts = await Workout.allUserWorkouts(userId)
-      res.render("workouts", {workouts: userWorkouts})
+      res.render("workouts/index", {workouts: userWorkouts})
     } catch (error) {
       console.error({error})
     }
@@ -21,23 +20,23 @@ class WorkoutsController {
   static async new(req, res, next) {
     try {
       let allExercises = await Exercise.all()
-      res.render('new-workouts', {exercises: allExercises})
+      res.render('workouts/new', {exercises: allExercises})
     } catch (error) {
       console.error({error})
     }
   }
 
   static async create(req, res, next) {
-    let workoutName = req.body.workout_name
+    let workoutName = req.body.name
     let userId = req.session.user.id
     let exerciseNames = req.body.exercise_names
     let workout = await Workout.create(workoutName, userId)
     let allExercises = await Exercise.mapExercises(exerciseNames)
     let allWorkoutExercises = await WorkoutExercise.createAll(allExercises, workout)
     if (allWorkoutExercises.includes(undefined)) {
-      res.redirect("/new_workouts")
+      res.redirect("/workouts/new")
     } else {
-      res.redirect("/workouts")
+      res.redirect("/dashboard")
     }
   }
 

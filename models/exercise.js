@@ -10,7 +10,8 @@ class Exercise {
   }
 
   static all() {
-    return database('exercises').select('*')
+    return database('exercises')
+      .select('*')
   }
 
   static findAllByName(exerciseName) {

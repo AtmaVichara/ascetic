@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var cors = require('cors')
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
@@ -12,6 +13,7 @@ var usersRouter = require('./routes/users');
 var dashboardRouter = require('./routes/dashboard');
 var exercisesRouter = require('./routes/exercises');
 var workoutsRouter = require('./routes/workouts')
+var workoutExercisesRouter = require('./routes/workout-exercises')
 
 var app = express();
 
@@ -29,6 +31,7 @@ app.use(session({
     }
 }));
 
+app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -48,7 +51,8 @@ app.use('/', indexRouter);
 app.use('/', usersRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/exercises', exercisesRouter);
-app.use('/', workoutsRouter)
+app.use('/workouts', workoutsRouter);
+app.use('/workouts', workoutExercisesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

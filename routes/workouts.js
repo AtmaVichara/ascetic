@@ -10,16 +10,16 @@ const sessionChecker = (req, res, next) => {
   }
 }
 
-router.get("/new_workouts", (req, res, next) => {
+router.get("/new", (req, res, next) => {
   return WorkoutsController.new(req, res, next)
 })
 
-router.post("/workouts", (req, res, next) => {
-  return WorkoutsController.create(req, res, next)
+router.get("/", sessionChecker, (req, res, next) => {
+  return WorkoutsController.index(req, res, next)
 })
 
-router.get("/workouts", sessionChecker, (req, res, next) => {
-  return WorkoutsController.index(req, res, next)
+router.post("/", (req, res, next) => {
+  return WorkoutsController.create(req, res, next)
 })
 
 module.exports = router
