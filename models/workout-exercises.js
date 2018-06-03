@@ -8,6 +8,9 @@ class WorkoutExercise {
     return database("workout_exercises")
       .insert(attributes)
       .returning("*")
+      .then((workoutExercise) => {
+        return workoutExercise[0]
+      })
       .catch((error) => console.error({error}))
   }
 
@@ -30,20 +33,6 @@ class WorkoutExercise {
       return await this.create(attributes)
     })
     return await Promise.all(workoutExercises)
-  }
-
-  static findAllByWorkoutId(workoutId) {
-    return database.raw(`
-      SELECT reps, sets, exercises.name AS exercise
-      FROM workout_exercises
-      INNER JOIN exercises ON workout_exercises.exercise_id = exercises.id
-      WHERE workout_exercises.workout_id = ?
-      GROUP BY workout_exercises.id
-      `, workoutId)
-      .then((workoutExercises) => {
-        return workoutExercises.rows
-      })
-      .catch((error) => console.error({error}))
   }
 
   static update(attributes, workoutExerciseId) {

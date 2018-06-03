@@ -1,13 +1,16 @@
 const chai = require('chai');
-const expect = chai.expect();
+const expect = chai.expect;
+const environment = process.env.NODE_ENV || 'test'
+const configuration = require('../knexfile')[environment]
+const database = require('knex')(configuration)
 const should = chai.should();
 const chaiHttp = require('chai-http');
-const app = require('../app.js');
+const app = require('../../app.js');
 const request = require('supertest');
 
 chai.use(chaiHttp);
 
-describe('Authentication Functionality', () => {
+describe('`Authentication Functionality`', () => {
 
   const userCredentials = {
     email: 'jmrjobes@yahmail.biznis',
