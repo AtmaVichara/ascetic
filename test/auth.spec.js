@@ -43,11 +43,10 @@ describe('Authentication Functionality', () => {
       .expect(200, done);
     })
 
-    // it('should return 302 for unauthenticated user', (done) => {
-    //   request(app).get('/dashboard')
-    //     .expect('Location', '/')
-    //     .expect(404, done)
-    // })
+    it('should return 302 for unauthenticated user', (done) => {
+      request(app).get('/dashboard')
+        .expect(302, done)
+    })
   })
 
 
