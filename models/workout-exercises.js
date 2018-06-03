@@ -46,7 +46,7 @@ class WorkoutExercise {
       .catch((error) => console.error({error}))
   }
 
-  static updateSetsReps(attributes, workoutExerciseId) {
+  static update(attributes, workoutExerciseId) {
     return database("workout_exercises")
       .where("id", workoutExerciseId)
       .update(attributes)
