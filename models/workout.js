@@ -21,7 +21,7 @@ class Workout {
       INNER JOIN workout_exercises ON workouts.id = workout_exercises.workout_id
       WHERE workouts.user_id = ?
       GROUP BY workouts.id
-      ORDER BY workouts.id
+      ORDER BY workouts.id DESC
     `, userId)
     .then((workouts) => {
       return workouts.rows

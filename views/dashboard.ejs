@@ -28,6 +28,33 @@
           <i class="material-icons">add</i>
         </a>
       </div>
+      <div class="container">
+        <h4>Workouts</h4>
+        <% workouts.forEach((workout) => { %>
+          <ul class="collection with-header workoutHeader">
+            <li class="collection-header"><h6><%= workout.name %></h6></li>
+            <% workout.exercises.forEach((exercise) => { %>
+              <div class="row col s12">
+                <li class="collection-item exerciseShow valign-wrapper" id="<%= exercise.name %>">
+                  <div class="col s3">
+                    <strong><%= exercise.name %></strong>
+                  </div>
+                  <div class="col s3">
+                    Reps <%= exercise.reps %>
+                  </div>
+                  <div class="col s3">
+                    Sets <%= exercise.sets %>
+                  </div>
+                  <div class="col s3">
+                    <input type="number" value="<%= exercise.weight %>" name="weight" id="ex-<%= exercise.id %>-w-<%= workout.id %>-sets" class="col s12">
+                    <label for="exerciseWeight">Weight</label>
+                  </div>
+                </li>
+              </div>
+            <% }) %>
+          </ul>
+        <% }) %>
+      </div>
     </div>
 
     <script type="text/javascript" src="javascripts/materialize.min.js"></script>
