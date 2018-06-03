@@ -11,6 +11,7 @@ class Workout {
           json_build_object(
             'id', exercises.id,
             'name', name,
+            'weight', workout_exercises.weight,
             'sets', workout_exercises.sets,
             'reps', workout_exercises.reps))
         FROM exercises
