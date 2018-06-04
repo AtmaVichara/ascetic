@@ -8,6 +8,7 @@ const chaiHttp = require('chai-http');
 const app = require('../app.js');
 const request = require('supertest');
 
+
 chai.use(chaiHttp);
 
 describe('`Authentication Functionality`', () => {
@@ -41,15 +42,15 @@ describe('`Authentication Functionality`', () => {
       })
   })
 
-  describe("GET /exercises", () => {
-    it("should return all exercises", () => {
+
+  describe("GET /workouts", () => {
+    it("should return all workouts", () => {
       return authenticatedUser
-        .get("/exercises")
+        .get("/workouts")
         .then((response) => {
           response.should.have.status(200)
+          response.text.should.match(/id="ex-1-w-1-reps"/)
           response.text.should.match(/id="ab roller"/)
-          response.text.should.match(/id="ab crunch machine"/)
-          response.text.should.match(/id="alternating renegade row"/)
         })
     })
   })

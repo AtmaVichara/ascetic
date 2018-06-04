@@ -1,16 +1,16 @@
-const chai = require('chai');
-const expect = chai.expect;
 const environment = process.env.NODE_ENV || 'test'
 const configuration = require('../knexfile')[environment]
 const database = require('knex')(configuration)
+const chai = require('chai');
+const expect = chai.expect;
 const should = chai.should();
 const chaiHttp = require('chai-http');
-const app = require('../app.js');
+const app = require('../../app.js');
 const request = require('supertest');
 
-chai.use(chaiHttp);
+chai.use(chaiHttp)
 
-describe('`Authentication Functionality`', () => {
+describe("Dashbaord Controller Test", () => {
 
   const userCredentials = {
     email: 'jmrjobes@yahmail.biznis',
@@ -41,15 +41,23 @@ describe('`Authentication Functionality`', () => {
       })
   })
 
-  describe("GET /exercises", () => {
-    it("should return all exercises", () => {
+  describe("GET /dashboard", () => {
+    it("shows the dashbaord path and return 200 code", () => {
       return authenticatedUser
-        .get("/exercises")
+        .get("/dashboard")
         .then((response) => {
           response.should.have.status(200)
-          response.text.should.match(/id="ab roller"/)
-          response.text.should.match(/id="ab crunch machine"/)
-          response.text.should.match(/id="alternating renegade row"/)
+          response.text.should.match(/id="userWorkouts"/)
+        })
+    })
+
+    it("returns index page for unauthenticated user", () => {
+      return chai.request(app)
+        .get("/dashboard")
+        .then((response) => {
+          response.should.have.status(200)
+          response.text.should.match(/id="logInForm"/)
+          response.text.should.match(/id="signUpForm"/)
         })
     })
   })
