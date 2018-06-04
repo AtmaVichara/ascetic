@@ -7,13 +7,6 @@ var cors = require('cors')
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
-var memjs = require('memjs')
-var mc = memjs.Client.create(process.env.MEMCACHIER_SERVERS, {
-  failover: true,
-  timeout: 5,
-  keepAlive: true
-})
-var MemcachedStore = require('connect-memjs')(session);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
