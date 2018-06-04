@@ -23,7 +23,9 @@ class User {
         req.session.user = user;
         res.status(200).redirect('/dashboard')
       })
-      .catch((error) => console.error({error}))
+      .catch((error) => {
+        res.status(404)
+      })
   }
 
   static logIn(req, res, next) {
@@ -42,7 +44,9 @@ class User {
         req.session.user = user;
         res.status(200).redirect('/dashboard')
       })
-      .catch((error) => console.error({error}))
+      .catch((error) => {
+        res.status(404)
+      })
   }
 
   static hashPassword(password) {
