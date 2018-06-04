@@ -6,9 +6,6 @@ const expect          = chai.expect;
 const chaiHttp        = require('chai-http');
 const server          = require('../../app.js');
 const Workout         = require('../../models/workout')
-pry = require('pryjs')
-
-chai.use(chaiHttp);
 
 describe("Workout Model", () => {
 
