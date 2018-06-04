@@ -4,17 +4,11 @@ const Exercise = require('../../../models/exercise')
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  var exercises = new Array()
 
   let parsed = Baby.parseFiles(myFile)
+  var exercises = parsed.data.map(row => new Exercise(row[0]))
 
-  parsed.data.forEach((row) => {
-    exercises.push(new Exercise(row[0]))
-  })
-
-
-
-  return knex.raw('TRUNCATE exercises RESTART IDENTITY')
+  return knex.raw('TRUNCATE exercises RESTART IDENTITY CASCADE')
     .then(function () {
       // Inserts seed entries
       return knex('exercises').insert(exercises);
