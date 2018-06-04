@@ -25,6 +25,11 @@ app.set('view engine', 'ejs');
 app.use(session({
     key: 'user_sid',
     secret: 'somerandonstuffs',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 600000
+    }
 }));
 
 app.use(cors())
