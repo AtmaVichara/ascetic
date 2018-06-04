@@ -24,6 +24,7 @@
       <div class="col s12 m12 center-align">
         <h1>Workouts</h1>
       </div>
+      <% if (workouts !== undefined) { %>
         <% workouts.forEach((workout) => { %>
           <ul class="collection with-header">
             <li class="collection-header workoutHeader">
@@ -51,6 +52,7 @@
             <% }) %>
           </ul>
         <% }) %>
+      <% }) %>
     </div>
 
     <script type="text/javascript" src="javascripts/materialize.min.js"></script>
