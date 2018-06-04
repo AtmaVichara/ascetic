@@ -10,7 +10,7 @@ var sassMiddleware = require('node-sass-middleware');
 var memjs = require('memjs')
 var mc = memjs.Client.create(process.env.MEMCACHIER_SERVERS, {
   failover: true,
-  timeout: 1,
+  timeout: 5,
   keepAlive: true
 })
 var MemcachedStore = require('connect-memjs')(session);
