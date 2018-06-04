@@ -5,7 +5,7 @@ const configuration = require('../knexfile')[environment]
 const database = require('knex')(configuration)
 const should = chai.should();
 const chaiHttp = require('chai-http');
-const app = require('../../app.js');
+const app = require('../app.js');
 const request = require('supertest');
 
 chai.use(chaiHttp);
@@ -43,12 +43,13 @@ describe('`Authentication Functionality`', () => {
 
   describe("GET /exercises", () => {
     it("should return all exercises", () => {
-      return chai.request(app)
+      return authenticatedUser
         .get("/exercises")
         .then((response) => {
           response.should.have.status(200)
-          response.text.includes("ab crunch machine")
-          response.text.includes("alternating renegade row")
+          response.text.should.match(/id="ab roller"/)
+          response.text.should.match(/id="ab crunch machine"/)
+          response.text.should.match(/id="alternating renegade row"/)
         })
     })
   })

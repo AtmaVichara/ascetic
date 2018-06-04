@@ -9,6 +9,24 @@ const WorkoutExercise = require('../../models/workout-exercises')
 
 describe("WorkoutExercise Model Test", () => {
 
+  before((done) => {
+    database.migrate.latest()
+    .then(() => done())
+    .catch((error) => {
+      throw error;
+    })
+    .done();
+  })
+
+  beforeEach((done) => {
+    database.seed.run()
+      .then(() => done())
+      .catch((error) => {
+        throw error;
+      })
+      .done()
+  })
+
   describe("#create", () => {
     it("should create and return new workout exercise", async () => {
       let attrs = {reps: 2, sets: 12, workout_id: 1, exercise_id: 1, weight: 0}
