@@ -4,12 +4,8 @@ const database        = require('knex')(configuration);
 
 class ExerciseCategory {
 
-  constructor(name) {
-    this.name = name
-  }
-
   static findByName(name) {
-    return database('exercsie_categories')
+    return database('exercise_categories')
       .select('*')
       .where('name', name)
       .then((exerciseCategory) => {

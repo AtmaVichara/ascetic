@@ -8,7 +8,10 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       let parsed = Baby.parseFiles(myFile)
-      var exerciseCategories = parsed.data.map(row => new ExerciseCategory(row[0]))
+      var exerciseCategories = parsed.data.map((row) => {
+        return {'name': row[0]}
+      })
+      exerciseCategories.pop()
 
       return knex('exercise_categories').insert(exerciseCategories);
     });
