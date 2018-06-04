@@ -4,11 +4,7 @@ const database        = require('knex')(configuration);
 
 
 class Exercise {
-
-  constructor(name) {
-    this.name = name
-  }
-
+  
   static all() {
     return database('exercises')
       .select('*')
