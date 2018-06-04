@@ -34,10 +34,9 @@ app.use(session({
     secret: 'somerandonstuffs',
     resave: false,
     saveUninitialized: false,
-    store: new MemcachedStore({
-      servers: [process.env.MEMCACHIER_SERVERS],
-      prefix: '_session_'
-    })
+    cookie: {
+      expires: 600000
+    }
 }));
 
 app.use(cors())
