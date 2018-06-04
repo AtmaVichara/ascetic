@@ -7,6 +7,7 @@ var cors = require('cors')
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
+var pgSession = require('connect-pg-simple')(session)
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -22,6 +23,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(session({
+    store: new pgSession({
+      conString: process.env.DATABASE_URL
+    })
     key: 'user_sid',
     secret: 'somerandonstuffs',
     resave: false,
