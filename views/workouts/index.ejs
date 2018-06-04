@@ -25,8 +25,10 @@
         <h1>Workouts</h1>
       </div>
         <% workouts.forEach((workout) => { %>
-          <ul class="collection with-header workoutHeader">
-            <li class="collection-header"><h6><%= workout.name %></h6></li>
+          <ul class="collection with-header">
+            <li class="collection-header workoutHeader">
+              <a href="#"><h6><%= workout.name %></h6></a>
+            </li>
             <% workout.exercises.forEach((exercise) => { %>
               <li class="collection-item exerciseShow" id="<%= exercise.name %>">
                 <strong><%= exercise.name %></strong>

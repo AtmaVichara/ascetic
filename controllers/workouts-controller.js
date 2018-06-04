@@ -36,7 +36,7 @@ class WorkoutsController {
     if (allWorkoutExercises.includes(undefined)) {
       res.redirect("/workouts/new")
     } else {
-      res.redirect("/dashboard")
+      res.redirect("/workouts")
     }
   }
 

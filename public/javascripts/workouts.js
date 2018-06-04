@@ -1,4 +1,9 @@
 $(document).ready(() => {
+  $(".workoutHeader").on("click", (event) => {
+    $(event.currentTarget).nextUntil('ul').toggle(() => {
+      $(this).show('fast')
+    })
+  })
   $("button").click((event) => {
     var workoutInfo = $(event.currentTarget).attr("id")
     var sets = $(`input#${workoutInfo}-sets`).val()
