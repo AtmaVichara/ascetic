@@ -7,7 +7,7 @@ var cors = require('cors')
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
-var pgSession = require('connect-pg-simple')(session)
+var MemcachedStore = require('connect-memjs')(session);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -22,17 +22,22 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+var memjs = require('memjs')
+var mc = memjs.Client.create(process.env.MEMCACHIER_SERVERS, {
+  failover: true,
+  timeout: 1,
+  keepAlive: true
+})
+
 app.use(session({
-    store: new pgSession({
-      conString: process.env.DATABASE_URL
-    })
     key: 'user_sid',
     secret: 'somerandonstuffs',
     resave: false,
     saveUninitialized: false,
-    cookie: {
-        expires: 600000
-    }
+    store: new MemcachedStore({
+      servers: [process.env.MEMCACHIER_SERVERS],
+      prefix: '_session_'
+    })
 }));
 
 app.use(cors())
