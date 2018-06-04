@@ -25,7 +25,7 @@ app.set('view engine', 'ejs');
 app.use(session({
     store: new pgSession({
       conString: process.env.DATABASE_URL
-    })
+    }),
     key: 'user_sid',
     secret: 'somerandonstuffs',
     resave: false,
