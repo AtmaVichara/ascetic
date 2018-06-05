@@ -43,12 +43,12 @@
         <% workouts.forEach((workout) => { %>
           <ul class="collection with-header">
             <li class="collection-header workoutHeader">
-              <a href="#"><h6><%= workout.name %></h6></a>
+              <a class="waves-effect waves-teal btn-flat"><h6><%= workout.name %></h6></a>
             </li>
             <% workout.exercises.forEach((exercise) => { %>
               <div class="row col s12 exerciseShow">
                 <li class="collection-item exerciseShow valign-wrapper" id="<%= exercise.name %>">
-                  <div class="col s3">
+                  <div class="col s6">
                     <strong><%= exercise.name %></strong>
                   </div>
                   <div class="col s3">
@@ -57,8 +57,8 @@
                   <div class="col s3">
                     Sets <%= exercise.sets %>
                   </div>
-                  <div class="col s3">
-                    <input type="number" value="<%= exercise.weight %>" name="weight" id="ex-<%= exercise.id %>-w-<%= workout.id %>-sets" class="col s12">
+                  <div class="col s2">
+                    <input type="number" value="<%= exercise.weight %>" name="weight" id="ex-<%= exercise.id %>-w-<%= workout.id %>-sets" class="col s6 center">
                     <label for="exerciseWeight">Weight</label>
                   </div>
                 </li>
