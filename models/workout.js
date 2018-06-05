@@ -43,6 +43,19 @@ class Workout {
       .catch((error) => console.error({error}))
   }
 
+  static delete(workoutId) {
+    return database("workouts")
+      .where("id", workoutId)
+      .del()
+      .then(() => {
+        return "Successfully Delete Workout"
+      })
+      .catch((error) => {
+        console.error({error})
+        return "Did Not Delete Workout"
+      })
+  }
+
 }
 
 module.exports = Workout
