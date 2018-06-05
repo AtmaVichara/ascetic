@@ -22,4 +22,8 @@ router.post("/", (req, res, next) => {
   return WorkoutsController.create(req, res, next)
 })
 
+router.delete("/:id", (req, res, next) => {
+  return WorkoutsController.destroy(req, res, next)
+})
+
 module.exports = router
