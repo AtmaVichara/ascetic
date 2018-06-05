@@ -14,7 +14,7 @@ class WorkoutsController {
       let userWorkouts = await Workout.allUserWorkouts(userId)
       res.render("workouts/index", {workouts: userWorkouts})
     } catch (error) {
-      console.error({error})
+      res.status(500)
     }
   }
 
@@ -23,17 +23,18 @@ class WorkoutsController {
       let allCategories = await ExerciseCategory.allWithExercises()
       res.render('workouts/new', {categories: allCategories})
     } catch (error) {
-      console.error({error})
+      res.status(500)
     }
   }
 
   static async create(req, res, next) {
-    let workoutName = req.body.name
-    let userId = req.session.user.id
-    let exerciseNames = req.body.exercise_names
-    let workout = await Workout.create(workoutName, userId)
-    let allExercises = await Exercise.mapExercises(exerciseNames)
+    let workoutName         = req.body.name
+    let userId              = req.session.user.id
+    let exerciseNames       = req.body.exercise_names
+    let workout             = await Workout.create(workoutName, userId)
+    let allExercises        = await Exercise.mapExercises(exerciseNames)
     let allWorkoutExercises = await WorkoutExercise.createAll(allExercises, workout)
+
     if (allWorkoutExercises.includes(undefined)) {
       res.redirect("/workouts/new")
     } else {

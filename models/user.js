@@ -49,6 +49,11 @@ class User {
       })
   }
 
+  static logOut(req, res, next) {
+    delete req.session.user
+    res.redirect('/')
+  }
+
   static hashPassword(password) {
     return new Promise((resolve, reject) => {
       bcrypt.hash(password, 10, (err, hash) => {
