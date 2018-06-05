@@ -45,6 +45,16 @@ describe("Workout Model", () => {
       })
     })
 
+    describe("#delete", () => {
+      it("should delete workout", async () => {
+        let successful = await Workout.delete(1)
+        expect(successful).to.eq('Successfully Delete Workout')
+
+        let unsuccessful = await Workout.delete('45')
+        expect(unsuccessful).to.eq('Did Not Delete Workout')
+      })
+    })
+
   })
 
 })

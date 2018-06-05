@@ -5,7 +5,7 @@ const configuration = require('../knexfile')[environment]
 const database = require('knex')(configuration)
 const should = chai.should();
 const chaiHttp = require('chai-http');
-const app = require('../app.js');
+const app = require('../../app.js');
 const request = require('supertest');
 
 
@@ -53,6 +53,16 @@ describe('`Authentication Functionality`', () => {
           response.text.should.match(/id="ab roller"/)
         })
     })
+  })
+
+  describe("DELETE /workouts/:id", () => {
+    return authenticatedUser
+      .delete("/workouts/1")
+      .then((response) => {
+        response.should.have.status(200)
+        response.body.success.should.eq('Successfully Delete Workout')
+      })
+      .catch((error) => console.error({error}))
   })
 
 })
