@@ -24,6 +24,10 @@ a {
   bottom: 0px; }
 
 .exerciseShow {
-  display: none; }
+  display: none;
+  margin-bottom: 0px !important; }
+
+h3 {
+  color: #eee; }
 
 /*# sourceMappingURL=style.css.map */

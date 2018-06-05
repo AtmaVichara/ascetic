@@ -10,30 +10,14 @@
     <title>Dashboard</title>
   </head>
   <body>
-    <nav class="grey lighten-1 z-depth-4">
-      <div>
-        <a href="/dashboard" class="brand-logo center">Ascetic</a>
-        <ul id="nav-mobile" class="left">
-          <li><a href="/exercises">Exercises</a></li>
-          <li><a href="/workouts">Workouts</a></li>
-        </ul>
-        <ul id="nav-mobile" class="right">
-          <li><a href="/dashboard">Dashboard</a></li>
-          <li>
-            <a href="/logout">Logout</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+
+    <header>
+      <% include ./partials/navbar %>
+    </header>
 
     <br>
-    <div class="row">
-      <div class="col s12" id="workoutCreation">
-        <a class="btn-floating btn-large waves-effect waves-light grey lighten-1 right" href="/workouts/new">
-          <i class="material-icons">add</i>
-        </a>
-      </div>
-    </div>
+
+    <% include ./partials/workout-creation-button %>
 
     <div class="container">
       <div class="col s12 center">
@@ -46,8 +30,8 @@
               <a class="waves-effect waves-teal btn-flat"><h6><%= workout.name %></h6></a>
             </li>
             <% workout.exercises.forEach((exercise) => { %>
-              <div class="row col s12 exerciseShow">
-                <li class="collection-item exerciseShow valign-wrapper" id="<%= exercise.name %>">
+              <div class="row exerciseShow">
+                <li class="collection-item valign-wrapper" id="<%= exercise.name %>">
                   <div class="col s6">
                     <strong><%= exercise.name %></strong>
                   </div>

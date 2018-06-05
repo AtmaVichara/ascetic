@@ -24,7 +24,7 @@ class User {
         res.status(200).redirect('/dashboard')
       })
       .catch((error) => {
-        res.status(404)
+        return res.redirect('/')
       })
   }
 
@@ -45,7 +45,7 @@ class User {
         res.status(200).redirect('/dashboard')
       })
       .catch((error) => {
-        res.status(404)
+        return res.redirect('/')
       })
   }
 
