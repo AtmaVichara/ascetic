@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
-const Exercise = require('../models/exercise')
+const ExerciseCategory = require('../models/exercise-category')
 
 class ExercisesController {
 
   static index(req, res, next) {
-    return Exercise.all(req, res, next)
-      .then((allExercises) => {
-        res.render('exercises/index', {exercises: allExercises})
+    return ExerciseCategory.allWithExercises()
+      .then((allCategories) => {
+        res.render('exercises/index', {categories: allCategories})
       });
   }
 }

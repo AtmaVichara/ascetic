@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const Workout = require('../models/workout')
 const Exercise = require('../models/exercise')
+const ExerciseCategory = require('../models/exercise-category')
 const WorkoutExercise = require("../models/workout-exercises")
 
 
@@ -19,8 +20,8 @@ class WorkoutsController {
 
   static async new(req, res, next) {
     try {
-      let allExercises = await Exercise.all()
-      res.render('workouts/new', {exercises: allExercises})
+      let allCategories = await ExerciseCategory.allWithExercises()
+      res.render('workouts/new', {categories: allCategories})
     } catch (error) {
       console.error({error})
     }
