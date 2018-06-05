@@ -4,10 +4,10 @@ const database         = require('knex')(configuration);
 const chai             = require('chai');
 const expect           = chai.expect;
 const chaiHttp         = require('chai-http');
-const server           = require('../app.js');
+const server           = require('../../app.js');
 const ExerciseCategory = require('../models/exercise-category')
 
-describe("Exercise Category", () => {
+describe("Exercise Category Model Tests", () => {
 
   before((done) => {
     database.migrate.latest()
@@ -27,11 +27,10 @@ describe("Exercise Category", () => {
       .done()
   })
 
-  describe("#findByName", () => {
-    it("should find and return exercise category by name", async () => {
-      let exerciseCategory = await ExerciseCategory.findByName("Abs")
-      expect(exerciseCategory).to.be.an("object")
-      expect(exerciseCategory.name).to.eq("Abs")
+  describe("#allWithExercises", () => {
+    it("should return category with exercises", async () => {
+      let exerciseCategories = await ExerciseCategory.allWithExercises()
+      expect(exerciseCategories).to.be.lengthOf(17)
     })
   })
 

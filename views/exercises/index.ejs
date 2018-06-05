@@ -2,30 +2,46 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='stylesheets/style.css' />
     <link type="text/css" rel="stylesheet" href="stylesheets/materialize.min.css"  media="screen,projection"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/javascripts/exercises.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Exercises</title>
   </head>
   <body>
-    <nav class="grey lighten-1">
+    <nav class="grey lighten-1 z-depth-4">
       <div>
         <a href="/dashboard" class="brand-logo center">Ascetic</a>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
           <li><a href="/exercises">Exercises</a></li>
           <li><a href="/workouts">Workouts</a></li>
         </ul>
+        <ul id="nav-mobile" class="right">
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li>
+            <a href="#">Logout</a>
+          </li>
+        </ul>
       </div>
     </nav>
 
-    <div class="container">
-      <h1>Exercises</h1>
-      <div class="collection exercises">
-        <% exercises.forEach((exercise) => { %>
-          <a href="#!" class="collection-item" id="<%= exercise.name %>"><%= exercise.name %></a>
-        <% }) %>
+    <div class="container with-header">
+      <div class="col s12 center">
+        <h3 class="center">Exercises</h3>
       </div>
+      <% categories.forEach((category) => { %>
+        <div class="row">
+          <div class="collection with-header exercises">
+            <a href="#!" class="collection-item categoryHeader" id="<%= category.name %>"><h6><%= category.name %></h6></a>
+            <% category.exercises.forEach((exercise) => { %>
+              <div class="exerciseShow">
+                <a href="#!" class="collection-item exercise" id="<%= exercise %>"><%= exercise %></a>
+              </div>
+            <% }) %>
+          </div>
+        </div>
+      <% }) %>
     </div>
 
     <script type="text/javascript" src="javascripts/materialize.min.js"></script>

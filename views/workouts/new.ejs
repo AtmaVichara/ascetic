@@ -5,17 +5,24 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link type="text/css" rel="stylesheet" href="/stylesheets/materialize.min.css"  media="screen,projection"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/javascripts/new-workouts.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>New Workout</title>
   </head>
   <body>
 
-    <nav class="grey lighten-1">
+    <nav class="grey lighten-1 z-depth-4">
       <div>
         <a href="/dashboard" class="brand-logo center">Ascetic</a>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
           <li><a href="/exercises">Exercises</a></li>
           <li><a href="/workouts">Workouts</a></li>
+        </ul>
+        <ul id="nav-mobile" class="right">
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li>
+            <a href="#">Logout</a>
+          </li>
         </ul>
       </div>
     </nav>
@@ -34,17 +41,23 @@
                 </button>
               </div>
             </div>
-              <ul class="collection">
-                <% exercises.forEach((exercise) => { %>
-                  <li class="collection-item">
-                    <div>
-                      <label>
-                        <input type="checkbox" class="filled-in" name='exercise_names' id="myCheckbox" value="<%= exercise.name %>"/>
-                        <span>Add <%= exercise.name %></span>
-                      </label>
-                    </div>
-                  </li>
-                <% }) %>
+              <% categories.forEach((category) => { %>
+                <ul class="col s12 collection with-header">
+                    <li class="collection-header categoryHeader">
+                      <%= category.name %>
+                    </li>
+                    <% category.exercises.forEach((exercise) => { %>
+                      <div class="exerciseShow">
+                        <li class="collection-item">
+                          <label>
+                            <input type="checkbox" class="filled-in" name='exercise_names' id="myCheckbox" value="<%= exercise %>"/>
+                            <span>Add <%= exercise %></span>
+                          </label>
+                        </li>
+                      </div>
+                    <% }) %>
+                  </ul>
+              <% }) %>
             </div>
           </form>
         </div>
