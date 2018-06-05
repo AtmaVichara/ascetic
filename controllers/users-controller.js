@@ -12,6 +12,10 @@ class UsersController {
     return User.logIn(req, res, next)
   }
 
+  static logOut(req, res, next) {
+    return User.logOut(req, res, next)
+  }
+
 }
 
 module.exports = UsersController
