@@ -34,12 +34,8 @@ const updateSetsReps = (exSets, exReps, workoutId, exerciseId) => {
   })
   .then((response) => response.json())
   .then((response) => {
-    if (response.hasOwnProperty("success")) {
-      alert(response.success)
-    } else if (response.hasOwnProperty("error")){
+    if (response.hasOwnProperty("error")){
       alert(response.error)
-    } else {
-      alert("Error Occured With Update")
     }
   })
   .catch((error) => console.error({error}))
