@@ -13,7 +13,7 @@
     <nav class="grey lighten-1 z-depth-4">
       <div>
         <a href="/dashboard" class="brand-logo center">Ascetic</a>
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <ul id="nav-mobile" class="left">
           <li><a href="/exercises">Exercises</a></li>
           <li><a href="/workouts">Workouts</a></li>
         </ul>
@@ -40,10 +40,11 @@
       </div>
       <% if (workouts !== undefined) { %>
         <% workouts.forEach((workout) => { %>
-          <ul class="collection with-header">
-            <li class="collection-header workoutHeader">
-              <a href="#"><h6><%= workout.name %></h6></a>
-            </li>
+          <ul class="collection with-header" id="workout-<%= workout.id %>">
+              <li class="collection-header workoutHeader">
+                <a class="remove right waves-effect waves-red btn-flat" id="<%= workout.id %>"><i class="deleteWorkout material-icons">remove</i></a>
+                <a class="waves-effect waves-teal btn-flat"><h6><%= workout.name %></h6></a>
+              </li>
             <% workout.exercises.forEach((exercise) => { %>
               <li class="collection-item exerciseShow" id="<%= exercise.name %>">
                 <strong><%= exercise.name %></strong>

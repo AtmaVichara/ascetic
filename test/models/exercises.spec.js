@@ -3,8 +3,6 @@ const configuration   = require('../knexfile')[environment];
 const database        = require('knex')(configuration);
 const chai            = require('chai');
 const expect          = chai.expect;
-const chaiHttp        = require('chai-http');
-const server          = require('../../app.js');
 const Exercise        = require('../../models/exercise')
 
 describe("Exercise Model Test", () => {

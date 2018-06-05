@@ -42,6 +42,15 @@ class WorkoutsController {
     }
   }
 
+  static async destroy(req, res, next) {
+    let message = await Workout.delete(req.params.id)
+    if (message === "Successfully Delete Workout") {
+      res.json({'success': message})
+    } else {
+      res.json({'error': message})
+    }
+  }
+
 }
 
 module.exports = WorkoutsController

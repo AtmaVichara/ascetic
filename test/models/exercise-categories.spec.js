@@ -3,9 +3,7 @@ const configuration    = require('../knexfile')[environment];
 const database         = require('knex')(configuration);
 const chai             = require('chai');
 const expect           = chai.expect;
-const chaiHttp         = require('chai-http');
-const server           = require('../../app.js');
-const ExerciseCategory = require('../models/exercise-category')
+const ExerciseCategory = require('../../models/exercise-category')
 
 describe("Exercise Category Model Tests", () => {
 
