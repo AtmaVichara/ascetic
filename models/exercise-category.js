@@ -13,11 +13,21 @@ class ExerciseCategory {
       FROM exercise_categories
       INNER JOIN exercises ON exercise_categories.id = exercises.category_id
       GROUP BY exercise_categories.id
+      ORDER BY exercise_categories.id
     `)
     .then((exerciseCategory) => {
       return exerciseCategory.rows
     })
     .catch((error) => console.error({error}))
+  }
+
+  static find(id) {
+    return database("exercise_categories")
+      .where("id", id)
+      .then((exerciseCategory) => {
+        return exerciseCategory[0]
+      })
+      .catch((error) => console.error({error}))
   }
 
 }

@@ -4,10 +4,19 @@ const database        = require('knex')(configuration);
 
 
 class Exercise {
-  
+
   static all() {
     return database('exercises')
       .select('*')
+  }
+
+  static find(id) {
+    return database('exercises')
+      .where("id", id)
+      .then((exercise) => {
+        return exercise[0]
+      })
+      .catch((error) => {console.error({error})})
   }
 
   static findAllByName(exerciseName) {

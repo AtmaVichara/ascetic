@@ -14,7 +14,7 @@ class WorkoutsController {
       let userWorkouts = await Workout.allUserWorkouts(userId)
       res.render("workouts/index", {workouts: userWorkouts})
     } catch (error) {
-      res.status(500)
+      res.sendStatus(500)
     }
   }
 
@@ -23,7 +23,7 @@ class WorkoutsController {
       let allCategories = await ExerciseCategory.allWithExercises()
       res.render('workouts/new', {categories: allCategories})
     } catch (error) {
-      res.status(500)
+      res.sendStatus(500)
     }
   }
 
