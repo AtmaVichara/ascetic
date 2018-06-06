@@ -15,6 +15,7 @@ var exercisesRouter = require('./routes/exercises');
 var workoutsRouter = require('./routes/workouts')
 var workoutExercisesRouter = require('./routes/workout-exercises')
 var exercisesApiRouter = require("./routes/api/v1/exercises");
+var exerciseCategoriesApiRouter = require("./routes/api/v1/exercise-categories");
 
 var app = express();
 
@@ -56,6 +57,7 @@ app.use('/exercises', exercisesRouter);
 app.use('/workouts', workoutsRouter);
 app.use('/workouts', workoutExercisesRouter);
 app.use('/api/v1/exercises', exercisesApiRouter);
+app.use('/api/v1/exercise_categories', exerciseCategoriesApiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
