@@ -6,11 +6,11 @@ const sessionChecker = (req, res, next) => {
   if (req.session.user && req.cookies.user_sid) {
     next()
   } else {
-    res.render("index", {title: "Express"})
+    res.redirect("/")
   }
 }
 
-router.get("/new", (req, res, next) => {
+router.get("/new", sessionChecker, (req, res, next) => {
   return WorkoutsController.new(req, res, next)
 })
 
